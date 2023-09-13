@@ -43,28 +43,28 @@ function titleValidation(str) {
 router.post("/addInfo", (request, response) => {
   console.info("INFO: Adding new info into BlOGS\n");
 
-  // validation
-  if (!titleValidation(request.body.title)) {
-    response.status(400).json({ data: new Error("Validation failure!") });
-  }
+  // // validation
+  // if (!titleValidation(request.body.title)) {
+  //   response.status(400).json({ data: new Error("Validation failure!") });
+  // }
 
-  // const blog = new Blog({
-  //   title: request.body.title,
-  //   content: request.body.content,
-  //   createdAt: new Date(),
-  //   updatedAt: new Date(),
-  // });
+  const blog = new Blog({
+    title: request.body.title,
+    content: request.body.content,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
 
-  // blog
-  //   .save()
-  //   .then((data) => {
-  //     console.log("Blog Saved!", data);
-  //     return response.status(200).json({ data });
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error while Saving Blog:", error);
-  //     return response.status(400).json({ data: error });
-  //   });
+  blog
+    .save()
+    .then((data) => {
+      console.log("Blog Saved!", data);
+      return response.status(200).json({ data });
+    })
+    .catch((error) => {
+      console.error("Error while Saving Blog:", error);
+      return response.status(400).json({ data: error });
+    });
 });
 
 router.post("/update/:id", (req, res) => {
